@@ -23,6 +23,7 @@
 <button class="button1" onmousedown="accelerate(-0.1)" onmouseup="accelerate(0.1)">JUMP</button><br><br>
 <button class="button2" onclick="restartGame()">RESTART</button>
 
+
 <script>
       let demoGamePiece;
       let demoObstacles = [];
@@ -119,25 +120,25 @@
 
 		// Điều kiện khi obj chạm đáy khung hình
             this.hitBottom = function() {
-                  let equalbottom = demoGameBoard.canvas.height - this.height;
-                  if (this.y > equalbottom) {
-                        this.y = equalbottom;
+                  let equalBottom = demoGameBoard.canvas.height - this.height;
+                  if (this.y > equalBottom) {
+                        this.y = equalBottom;
                         this.gravitySpeed = 0;
                   }
             }
 
             //Phương thức va chạm
-            this.crashTo = function (otherobs) {
-                  let myleft = this.x;
-                  let myright = this.x + (this.width);
-                  let mytop = this.y;
-                  let mybottom = this.y + (this.height);
-                  let obsleft = otherobs.x;
-                  let obsright = otherobs.x + (otherobs.width);
-                  let obstop = otherobs.y;
-                  let obsbottom = otherobs.y + (otherobs.height);
-                  let crash = true;
-                  if ((mybottom < obstop) || (mytop > obsbottom) || (myright < obsleft) || (myleft > obsright)) {
+            this.crashTo = function (otherObs) {
+                  let myLeft = this.x;
+                  let myRight = this.x + (this.width);
+                  let myTop = this.y;
+                  let myBottom = this.y + (this.height);
+                  let obsLeft = otherObs.x;
+                  let obsRight = otherObs.x + (otherObs.width);
+                  let obsTop = otherObs.y;
+                  let obsBottom = otherObs.y + (otherObs.height);
+                  let crash = true
+                  if ((myBottom < obsTop) || (myTop > obsBottom) || (myRight < obsLeft) || (myLeft > obsRight)) {
                         crash = false;
                   }
                   return crash;
@@ -204,10 +205,10 @@
                   x = demoGameBoard.canvas.width;
                   minHeight = 80;
                   maxHeight = 300;
-                  height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+                  height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
                   minGap = 100;
                   maxGap = 150;
-                  gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+                  gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
                   demoObstacles.push(new Component(20, height, "blue", x, 0));
                   demoObstacles.push(new Component(20, x - height - gap, "blue", x, height + gap));
             }
